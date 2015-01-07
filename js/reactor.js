@@ -15,7 +15,6 @@ var map, geoLocate;
 require(["esri/map",                                // mapSection
          "esri/config",                             // The default values for all JS API configuration options. 
          "esri/dijit/HomeButton",                   // homeButton
-         "esri/dijit/LocateButton",                 // locateButton
          "esri/geometry/Extent",                    // The minimum and maximum X- and Y- coordinates of a bounding box. Used to set custom extent
          "esri/layers/ArcGISDynamicMapServiceLayer",
          "esri/layers/ArcGISTiledMapServiceLayer",
@@ -28,7 +27,9 @@ require(["esri/map",                                // mapSection
 
 
 // Set variables to be used with references (write variables and references in the same order and be careful of typos on your references)
-         function (Map, esriConfig, HomeButton, LocateButton, Extent, ArcGISDynamicMapServiceLayer, ArcGISTiledMapServiceLayer, FeatureLayer, GeometryService, dom, on, parser) {
+         function (Map, esriConfig, HomeButton, Extent,
+                   ArcGISDynamicMapServiceLayer, ArcGISTiledMapServiceLayer,
+                   FeatureLayer, GeometryService, dom, on, parser) {
 
              parser.parse();
 
@@ -96,17 +97,9 @@ require(["esri/map",                                // mapSection
 
              // add homeButton begin
              var home = new HomeButton({
-                 map: map
+                 map: map,
              }, "homeButton");
              home.startup();
              // add homeButton end
-
-
-             // add locateButton begin
-             geoLocate = new LocateButton({
-                 map: map
-             }, "locateButton");
-             geoLocate.startup();
-             // add locateButton end
 
          });
