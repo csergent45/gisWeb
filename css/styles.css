@@ -2,7 +2,7 @@
 //
 //   Author: Chris Sergent
 //   Date:   January 6, 2014
-//   Application: GIS Web
+//   Application: GIS Mobile
 //
 ////////////////////////////////////////////////////////////////////*/
 /* Validate your CSS files at: http://jigsaw.w3.org/css-validator/#validate_by_upload */
@@ -131,8 +131,8 @@ p
     background: radial-gradient(ellipse at center,  rgba(247,247,247,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(5,5,5,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#050505',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     border-width:thin;
-    }
-            
+}
+
 .esriScalebarLabel, .esriScalebarLineLabel,.esriScalebarSecondNumber, .esriScaleLabelDiv
 {
     text-shadow:-1px -1px 0 #fff,  
@@ -142,7 +142,6 @@ p
                
 }
 
-    
 
 /*######################################
 |
