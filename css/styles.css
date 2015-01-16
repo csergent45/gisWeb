@@ -277,6 +277,15 @@ p
       border-radius: 5px;
       visibility: hidden;
     }
+    
+    #search 
+    {
+        display:block;
+        position:absolute;
+        z-index:3;
+        top:20px;
+        left:75px;
+    }
 
 
 /*######################################
