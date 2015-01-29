@@ -15,7 +15,7 @@ var map, toolbar, symbol, pt, graphic, geomTask, app = {};
 // and http://dojotoolkit.org/reference-guide/1.9/  
 
 
-// Get references to modules to be used  
+// Get references to modules to be used
 require(["esri/map",                                // mapSection  
          "esri/config",                             // The default values for all JS API configuration options.   
 
@@ -52,7 +52,7 @@ require(["esri/map",                                // mapSection
 
          "esri/sniff", // measurementDiv  
 
-         "esri/SpatialReference", 
+         "esri/SpatialReference",
 
 
          "esri/symbols/SimpleFillSymbol", // measurementDiv  
@@ -207,7 +207,7 @@ require(["esri/map",                                // mapSection
                  toolbar.on("draw-end", addToMap);
              }
 
-             
+
              function addToMap(evt) {
                  var symbol;
                  toolbar.deactivate();
@@ -240,6 +240,7 @@ require(["esri/map",                                // mapSection
                  document.getElementById("header").style.visibility = 'visible';
              });
 
+             
              // Hide drawing tools  
              on(dom.byId("closeDrawingTools"), "click", function () {
                  document.getElementById("header").style.visibility = 'hidden';
@@ -249,9 +250,9 @@ require(["esri/map",                                // mapSection
              // Clear graphics from map  
              on(dom.byId("clearGraphics"), "click", function () {
                  map.graphics.clear();
-             });  
+             });
 
-            
+
              // add homeButton begin  
              var home = new HomeButton({
                  map: map
@@ -392,6 +393,7 @@ require(["esri/map",                                // mapSection
                  document.getElementById("hideToolsButton").style.visibility = 'visible';
                  document.getElementById("showPrinter").style.visibility = 'visible';
                  document.getElementById("draw").style.visibility = 'visible';
+                 document.getElementById("socialNetwork").style.visibility = 'visible';
              });
 
 
@@ -402,6 +404,7 @@ require(["esri/map",                                // mapSection
                  document.getElementById("showPrinter").style.visibility = 'hidden';
                  document.getElementById("printer").style.visibility = 'hidden';
                  document.getElementById("draw").style.visibility = 'hidden';
+                 document.getElementById("socialNetwork").style.visibility = 'hidden';
              });
 
 
@@ -414,6 +417,11 @@ require(["esri/map",                                // mapSection
              // Show print widget  
              on(dom.byId("showPrintWidget"), "click", function () {
                  document.getElementById("printer").style.visibility = 'visible';
+             });
+
+             // Close sidebar
+             on(dom.byId("sideBarClose"), "click", function () {
+                 document.getElementById("sideBar").style.visibility = 'hidden';
              });
 
 
@@ -497,8 +505,8 @@ require(["esri/map",                                // mapSection
                      label: "Open Location in Bing's Birds Eye View",
                      onClick: function () {
                          openBirdsEye(currentLocation);
-                        }
-                    })
+                     }
+                 })
                  )
 
 
@@ -582,5 +590,42 @@ require(["esri/map",                                // mapSection
              // end Google Street View
 
 
+             // Show Sidebar
+             on(dom.byId("showSideBar"), "click", function () {
+                 document.getElementById("sideBar").style.visibility = 'visible';
+             });
+
+             // Add Facebook SDK
+             (function (d, s, id) {
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) return;
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+                 fjs.parentNode.insertBefore(js, fjs);
+             } (document, 'script', 'facebook-jssdk'));
+
+
+             /* Enables Sidebar to be draggable */
+             jQuery(function () {
+                 jQuery("#sideBar").draggable();
+             });
+
+
+             /* The accordion allows sections to expand/collapse which show or hide each section */
+             jQuery(function () {
+                 jQuery("#sideBarTitle").accordion({
+                     collapsible: true,
+                     heightStyle: "content"
+                 });
+             });
+
+
+             /* Setting an active panel - http://api.jqueryui.com/accordion/#option-active */
+             jQuery(function () {
+                 jQuery("#sideBarContent").accordion({
+                     heightStyle: "content"
+                 });
+                 jQuery("#sideBarContent").accordion("option", "active", 0);
+             });
 
          });  

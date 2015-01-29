@@ -50,9 +50,14 @@ html, body
 /*---------------------------------
 |       HEADINGS
 /--------------------------------*/
-h1, h2, h3
+h1, h2
 {
     margin:05em 0 1em 0
+}
+
+h3
+{
+    text-align:left;
 }
 
 /*---------------------------------
@@ -246,7 +251,7 @@ p
     /* Printer CSS End */
     
     /* Style tool buttons on hover */
-     #showTools:hover, #hideTools:hover, #showPrinter:hover, #editor:hover
+     #showTools:hover, #hideTools:hover, #showPrinter:hover,#draw:hover, #socialNetwork:hover
      {
          background:#eee;
      }
@@ -336,7 +341,7 @@ p
         height: 80px; 
         padding: 0.5em;
         z-index:10;
-        top:5px;
+        top:100px;
         position:absolute;
         left:30%;
         background-color:White;
@@ -346,10 +351,10 @@ p
       
       #draw
       {
-        height:20px;
-        width:20px;
+        height:30px;
+        width:30px;
         position:absolute;
-        top:285px;
+        top:280px;
         left:20px;
         z-index:50;
         padding: 5px 6px 6px 6px;
@@ -359,6 +364,72 @@ p
         }
         
     /* CSS for drawing tools end */
+    
+    /* Social network button */
+    #socialNetwork
+    {
+       height:30px;
+        width:30px;
+        position:absolute;
+        top:350px;
+        left:20px;
+        z-index:50;
+        padding: 5px 6px 6px 6px;
+        background-color:#f9f8f8;
+        border-radius:5px;
+        visibility:hidden;
+        } 
+    
+    /* Sidebar styles begin */
+    #sideBar
+    {
+        display:block; /* Only for IE8 or less */
+        position:absolute;
+        width:380px;
+        height:auto;
+        background-color:transparent;
+        border-color:transparent;
+        padding:0px;
+        left:250px;
+        top:100px;
+        visibility:hidden;
+        z-index:200
+    }
+
+    
+
+    #sideBarContent
+    {
+        width:380px;
+        padding:0px;
+    }
+   
+
+    #sideBarTopFill, #sideBarBottomFill
+    {
+        height:15px;
+        background-color:#E1EBFB;
+        
+    }
+
+    #sideBarTop
+    {
+        background-color:#E1EBFB;
+        height:5px;
+        border-top-left-radius:5px;
+        border-top-right-radius:5px
+    }
+
+    #sideBarBottom
+    {
+        background-color:#E1EBFB;
+        height:auto;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;
+        
+    }
+    
+    /* Sidebar styles end */
     
 /*######################################
 |

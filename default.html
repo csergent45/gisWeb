@@ -19,6 +19,32 @@
         <!-- Icon for iPad or Android -->
         <link rel="apple-touch-icon" href="images/iwidget.png" />
 
+
+        <!-- Script Post Load Begin -->
+
+        <!-- Active JavaScript API is 3.12 -->
+
+        <!-- By adding the reference to the ESRI JSAPI, it gives us access to the Dojo Framework and ESRI's Dijits. -->
+        <!-- WARNING: You will need to update this reference if you use a different version of the ESRI JSAPI. -->
+        <!-- ESRI JavaScript API 3.12 - December 31, 2014 -->
+        <script src="http://js.arcgis.com/3.12/">
+        
+        </script>
+
+        <!-- jQuery Library -->
+        <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+        <!-- Enables jquery mouse events to work as touch events on mobile devices: https://github.com/copernicus365/jquery-ui-touch-punch/blob/master/jquery.ui.touch-punch.js -->
+        <script src="js/jquery.ui.touch-punch.js" type="text/javascript"></script>
+        
+        <!-- Page Initialization -->
+        <script src="js/reactor.js" type="text/javascript">
+        
+        </script>
+
+
+        <!-- Script Post Load End -->
+
     </head>
 
     <body class="soria">
@@ -128,6 +154,12 @@
             </div>
             <!-- Drawing Button End -->
 
+            <!-- Social Network Button Begin -->
+            <div id="socialNetwork">
+                <input type="image" id="showSideBar" src="images/socialMedia.png" alt="Show Social Media" title="City Social Network Sites" />
+            </div>
+            <!-- Social Network Button End -->
+
             <!-- Drawing Tools Begin -->
             <div id="header" data-dojo-type="dijit/layout/ContentPane">
               <span>Draw:<br /></span>
@@ -140,6 +172,126 @@
               <button id="closeDrawingTools" data-dojo-type="dijit/form/Button">Close Tools</button>
             </div>
             <!-- Drawing Tools End -->
+
+            <!-- Sidebar Begin -->
+            <aside id="sideBar">
+                <!-- Sidebar Top Begin -->
+                <div id="sideBarTop">
+            
+                </div>                
+                <!-- Sidebar Top End -->
+
+                <!-- Sidebar Top Fill Begin -->
+                <div id="sideBarTopFill">
+            
+                </div>
+                <!-- Sidebar Top Fill End -->
+
+                <!-- Sidebar Title Begin -->
+                <div id="sideBarTitle">
+                    <p>Social Networks</p>
+                    <!-- Sidebar Content Begin -->
+                    <div id="sideBarContent">
+                        <h3>Twitter</h3>
+                        <!-- Decatur Twitter Begins -->
+                        <div id="decaturTwitter">
+                            <a class="twitter-timeline" href="https://twitter.com/AccessDecatur"
+                               data-widget-id="557285604892110849" 
+                               width="360" 
+                               height="350">Tweets by @AccessDecatur</a>
+                            <script>
+                                !function (d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s); js.id = id;
+                                        js.src = p + "://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                } (document, "script", "twitter-wjs");
+                            </script>
+                        </div>
+                        <!-- Decatur Twitter Ends -->
+
+                        <h3>Facebook</h3>
+                        <!-- Decatur Facebook Begins -->
+                        <div id="decaturFacebook">
+                            <div class="fb-like-box"
+                                 data-href="https://www.facebook.com/pages/City-of-Decatur/319956320318"
+                                 data-width="335" 
+                                 data-height="350" 
+                                 data-colorscheme="light" 
+                                 data-show-faces="true"
+                                 data-header="true" 
+                                 data-stream="true" 
+                                 data-show-border="false">
+                                 </div>
+                            <div id="fb-root">
+                        
+                            </div>
+                        </div>
+                        <!-- Decatur Facebook Ends -->
+
+                        <h3>LinkedIn</h3>
+                        <!-- Company Profile Begin -->
+                        <div id="companyProfile">
+                            <script src="//platform.linkedin.com/in.js"
+                                    type="text/javascript">
+                            </script>
+                            <script type="IN/CompanyProfile"
+                                    data-id="5311"
+                                    data-format="inline"
+                                    data-width="250">
+                            </script>
+                        </div>
+                        <!-- Company Profile End -->
+
+                        <h3>YouTube</h3>
+                        <!-- YouTube Channel Begin -->
+                        <div id="youTubeChannnel">
+                            <div id="static_video">
+                        
+                            </div>
+                            <script type="text/javascript">
+                                function showLatestVid(response) {
+                                    if (response.data && response.data.items) {
+                                        var items = response.data.items;
+                                        if (items.length > 0) {
+                                            var item = items[0];
+                                            var videoid = "http://www.youtube.com/embed/" + item.id;
+                                            console.log("Latest ID: '" + videoid + "'");
+                                            var video = "<iframe width='300' height='225' src='" + videoid + "' frameborder='0' allowfullscreen></iframe>";
+                                            jQuery('#static_video').html(video);
+                                        }
+                                    }
+                                }
+                            </script>
+                            <script type="text/javascript" 
+                                    src="https://gdata.youtube.com/feeds/api/users/DecaturCrimes/uploads?max-results=1&orderby=published&v=2&alt=jsonc&callback=showLatestVid">
+                            </script>
+                        </div>
+                        <!-- YouTube Channel End -->
+
+                    </div>
+                    <!-- Sidebar Content End -->
+                </div>
+                <!-- Sidebar Title End -->
+
+                <!-- Sidebar Bottom Fill Begin -->
+                <div id="sideBarBottomFill">
+            
+                </div>
+                <!-- Sidebar Bottom Fill End -->
+
+                <!-- Sidebar Bottom Begin -->
+                <div id="sideBarBottom">
+                    <div id="closeSidebar">
+                            &nbsp; &nbsp; &nbsp;<input type="image" id="sideBarClose" src="images/close.ico" alt="Close" title="Close" />
+                    </div>
+                </div>
+                <!-- Sidebar Bottom End -->
+            </aside>
+            <!-- Sidebar End -->
+
             
             <!-- Mail Pane Begin -->
             <div id="mailPane" data-dojo-type="dijit/TitlePane"
@@ -156,30 +308,7 @@
         </section>
         <!-- Map Section End -->
 
-        <!-- Script Post Load Begin -->
-
-        <!-- Active JavaScript API is 3.12 -->
-
-        <!-- By adding the reference to the ESRI JSAPI, it gives us access to the Dojo Framework and ESRI's Dijits. -->
-        <!-- WARNING: You will need to update this reference if you use a different version of the ESRI JSAPI. -->
-        <!-- ESRI JavaScript API 3.12 - December 31, 2014 -->
-        <script src="http://js.arcgis.com/3.12/">
         
-        </script>
-
-        <!-- jQuery Library -->
-        <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
-        <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-        <!-- Enables jquery mouse events to work as touch events on mobile devices: https://github.com/copernicus365/jquery-ui-touch-punch/blob/master/jquery.ui.touch-punch.js -->
-        <script src="js/jquery.ui.touch-punch.js" type="text/javascript"></script>
-        
-        <!-- Page Initialization -->
-        <script src="js/reactor.js" type="text/javascript">
-        
-        </script>
-
-
-        <!-- Script Post Load End -->
 
     </body>
 </html>
