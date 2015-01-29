@@ -459,8 +459,127 @@ require(["esri/map",                                // mapSection
 
 
 
-            
+             // Start Google Street View
+             map.on("load", createToolbarAndContextMenu);
 
+             function createToolbarAndContextMenu() {
+
+                 createMapMenu();
+                 ctxMenuForMap.bindDomNode(map.container);
+             }
+
+             function createMapMenu() {
+                 //Creates right-click context menu for map
+                 ctxMenuForMap = new Menu({
+                     onOpen: function (box) {
+                         // Let's calculate the map coordinates where user right clicked.
+                         // We'll use this to create the graphic when the user clicks
+                         // on the menu item
+                         currentLocation = getMapPointFromMenuPosition(box);
+                     }
+
+                 });
+
+                 // Add Google Stree View Menu Item
+                 ctxMenuForMap.addChild(new MenuItem({
+                     id: "lblStreetview",
+                     label: "Open Location in Google Streetview",
+                     onClick: function () {
+                         openStreetview(currentLocation);
+                     }
+                 })
+                            )
+
+
+                 // Add Bing Birds eye view
+                 ctxMenuForMap.addChild(new MenuItem({
+                     id: "lblBirdsEye",
+                     label: "Open Location in Bing's Birds Eye View",
+                     onClick: function () {
+                         openBirdsEye(currentLocation);
+                        }
+                    })
+                 )
+
+
+                 // Add weather
+                 ctxMenuForMap.addChild(new MenuItem({
+                     id: "lblShowWeather",
+                     label: "NWS Forecast For This Location",
+                     onClick: function () {
+                         openWeatherForecast(currentLocation);
+                     }
+                 }));
+
+
+                 ctxMenuForMap.startup();
+
+             }
+
+
+             function openStreetview(theLocation) {
+                 var theLatLongGeom = GeometryService(theLocation);
+                 //debugger;
+                 var params = new ProjectParameters();
+                 params.geometries = [theLocation];
+                 params.outSR = new SpatialReference({ wkid: 4326 });
+                 esriConfig.defaults.geometryService.project(params).then(function (projected) {
+                     var theLatLongGeom = projected[0];
+                     var theUrl = "http://maps.google.com/maps?q=Your+Sign+Location+in+Street+View@" + theLatLongGeom.x + "," + theLatLongGeom.y + "&cbll=" + theLatLongGeom.y + "," + theLatLongGeom.x + "&layer=c";
+                     window.open(theUrl, 'Streetview', "height=500,width=800,resizable=yes,scrollbars=yes");
+                 });
+             }
+
+
+             function openBirdsEye(theLocation) {
+                 var theLatLongGeom = GeometryService(theLocation);
+                 //debugger;
+                 var params = new ProjectParameters();
+                 params.geometries = [theLocation];
+                 params.outSR = new SpatialReference({ wkid: 4326 });
+                 esriConfig.defaults.geometryService.project(params).then(function (projected) {
+                     var theLatLongGeom = projected[0];
+                     var theUrl = "http://bing.com/maps/default.aspx?cp=" + theLatLongGeom.y + "~" + theLatLongGeom.x + "&style=b&dir=0#ToggleTaskArea";
+                     window.open(theUrl, 'BirdsEye', "height=650,width=800,resizable=yes,scrollbars=yes");
+                 });
+             }
+
+
+             function openWeatherForecast(theLocation) {
+                 var theLatLongGeom = GeometryService(theLocation);
+                 //debugger;
+                 var params = new ProjectParameters();
+                 params.geometries = [theLocation];
+                 params.outSR = new SpatialReference({ wkid: 4326 });
+                 esriConfig.defaults.geometryService.project(params).then(function (projected) {
+                     var theLatLongGeom = projected[0];
+                     var theUrl = "http://forecast.weather.gov/MapClick.php?lon=" + theLatLongGeom.x + "&lat=" + theLatLongGeom.y;
+                     window.open(theUrl, 'Forecast', "height=600,width=1050,resizable=yes,scrollbars=yes");
+                 });
+             }
+
+
+             // Helper Methods
+             function getMapPointFromMenuPosition(box) {
+                 var x = box.x, y = box.y;
+                 switch (box.corner) {
+                     case "TR":
+                         x += box.w;
+                         break;
+                     case "BL":
+                         y += box.h;
+                         break;
+                     case "BR":
+                         x += box.w;
+                         y += box.h;
+                         break;
+                 }
+
+                 var screenPoint = new Point(x - map.position.x, y - map.position.y);
+                 return map.toMap(screenPoint);
+             }
+
+             // end Google Street View
 
 
 
