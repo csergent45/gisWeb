@@ -119,6 +119,27 @@
                 <span style="font-size:smaller;padding:5px 5px;">Press <b>CTRL</b> to enable snapping.</span>
             </div>
             <!-- Measurement Tool End --> 
+
+
+            
+            <!-- Drawing Button Begin -->
+            <div id="draw">
+                <input type="image" id="showDrawingTools" src="images/draw.png" alt="Editor" title="Editor" />
+            </div>
+            <!-- Drawing Button End -->
+
+            <!-- Drawing Tools Begin -->
+            <div id="header" data-dojo-type="dijit/layout/ContentPane">
+              <span>Draw:<br /></span>
+              <button data-dojo-type="dijit/form/Button">Point</button>
+              <button data-dojo-type="dijit/form/Button">Line</button>
+              <button data-dojo-type="dijit/form/Button">Polygon</button>
+              <!--The Arrow,Triangle,Circle and Ellipse types all draw with the polygon symbol-->
+              <button data-dojo-type="dijit/form/Button">Arrow</button>
+              <button id="clearGraphics" data-dojo-type="dijit/form/Button">Clear Graphics</button>
+              <button id="closeDrawingTools" data-dojo-type="dijit/form/Button">Close Tools</button>
+            </div>
+            <!-- Drawing Tools End -->
             
             <!-- Mail Pane Begin -->
             <div id="mailPane" data-dojo-type="dijit/TitlePane"

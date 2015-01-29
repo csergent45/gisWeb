@@ -31,7 +31,6 @@ require(["esri/map",                                // mapSection
 
 
          "esri/geometry/Extent", // The minimum and maximum X- and Y- coordinates of a bounding box. Used to set custom extent  
-         "esri/geometry/jsonUtils",
          "esri/geometry/Point",
          "esri/geometry/screenUtils", // search  
 
@@ -68,9 +67,6 @@ require(["esri/map",                                // mapSection
 
          "esri/toolbars/draw",
 
-         "dijit/Menu",
-         "dijit/MenuItem",
-         "dijit/MenuSeparator",
          "dijit/registry",
 
          "dojo/_base/array",
@@ -93,19 +89,10 @@ require(["esri/map",                                // mapSection
 
 
 // Set variables to be used with references (write variables and references in the same order and be careful of typos on your references)  
-         function (Map,
-                   esriConfig, Color, Geocoder,
-                   HomeButton, Measurement, OverviewMap,
-                   Scalebar, Extent, geometryJsonUtils, Point,
-                   screenUtils, Graphic, ArcGISDynamicMapServiceLayer,
-                   ArcGISTiledMapServiceLayer, LayerDrawingOptions,
-                   FeatureLayer, SimpleRenderer, SnappingManager,
-                   has, SpatialReference, SimpleFillSymbol,
-                   SimpleLineSymbol, SimpleMarkerSymbol, GeometryService,
-                   PrintTask, PrintParameters, PrintTemplate,
-                   ProjectParameters, Draw, Menu, MenuItem,
-                   MenuSeparator, registry, arrayUtils,
-                   Color, dom, keys, on, parser, query) {
+         function (Map, esriConfig, Color, Geocoder, HomeButton, Measurement, OverviewMap, Scalebar, Extent, Point, screenUtils, Graphic,
+                   ArcGISDynamicMapServiceLayer, ArcGISTiledMapServiceLayer, LayerDrawingOptions,
+                   FeatureLayer, SimpleRenderer, SnappingManager, has, SpatialReference, SimpleFillSymbol, SimpleLineSymbol, SimpleMarkerSymbol, GeometryService,
+                   PrintTask, PrintParameters, PrintTemplate, ProjectParameters, Draw, registry, arrayUtils, Color, dom, keys, on, parser, query) {
 
 
              parser.parse();
@@ -195,6 +182,7 @@ require(["esri/map",                                // mapSection
                  }
              });
 
+
              function activateTool() {
                  var tool = this.label.toUpperCase().replace(/ /g, "_");
                  toolbar.activate(Draw[tool]);
@@ -207,7 +195,9 @@ require(["esri/map",                                // mapSection
                  toolbar.on("draw-end", addToMap);
              }
 
-             
+
+
+
              function addToMap(evt) {
                  var symbol;
                  toolbar.deactivate();
@@ -227,7 +217,11 @@ require(["esri/map",                                // mapSection
                  var graphic = new Graphic(evt.geometry, symbol);
                  map.graphics.add(graphic);
              }
+
+
              // Drawing Tools End  
+
+
 
 
              // Allow drawing tools to move with mouse  
@@ -235,14 +229,18 @@ require(["esri/map",                                // mapSection
                  jQuery("#header").draggable();
              });
 
+
              // Show drawing tools  
              on(dom.byId("showDrawingTools"), "click", function () {
                  document.getElementById("header").style.visibility = 'visible';
              });
 
+
              // Hide drawing tools  
              on(dom.byId("closeDrawingTools"), "click", function () {
                  document.getElementById("header").style.visibility = 'hidden';
+
+
              });
 
 
@@ -456,10 +454,6 @@ require(["esri/map",                                // mapSection
                  });
              }
              // end geocoder  
-
-
-
-            
 
 
 
